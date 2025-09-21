@@ -84,6 +84,42 @@ export default function InitialLoader() {
     }
   }, [visible]);
 
+  // Prevent scrolling while loader is visible
+  useEffect(() => {
+    if (visible) {
+      // Store original styles
+      const originalOverflow = document.body.style.overflow;
+      const originalPaddingRight = document.body.style.paddingRight;
+
+      // Calculate scrollbar width to prevent layout shift
+      const scrollBarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+
+      // Apply scroll prevention
+      document.body.style.overflow = "hidden";
+      if (scrollBarWidth > 0) {
+        document.body.style.paddingRight = `${scrollBarWidth}px`;
+      }
+
+      // Prevent touch scrolling on mobile
+      const preventDefault = (e: Event) => e.preventDefault();
+      document.addEventListener("touchmove", preventDefault, {
+        passive: false,
+      });
+      document.addEventListener("wheel", preventDefault, { passive: false });
+
+      return () => {
+        // Restore original styles
+        document.body.style.overflow = originalOverflow;
+        document.body.style.paddingRight = originalPaddingRight;
+
+        // Remove event listeners
+        document.removeEventListener("touchmove", preventDefault);
+        document.removeEventListener("wheel", preventDefault);
+      };
+    }
+  }, [visible]);
+
   const checkLoadingProgress = () => {
     const { videos, images, totalResources } = resourcesRef.current;
     let loadedCount = 0;
