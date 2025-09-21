@@ -15,7 +15,7 @@ const socialItems = [
 
 export default function Hero() {
   return (
-    <section className='fixed inset-0 w-full h-screen overflow-hidden'>
+    <section className='relative w-full h-screen overflow-hidden'>
       {/* fullscreen video background - place your MP4 in the public/ folder with the exact name */}
       <video
         className='absolute inset-0 w-full h-full object-cover'
@@ -38,11 +38,6 @@ export default function Hero() {
       </div>
 
       {/* Centered heading above the video */}
-      <div className='relative z-40 flex items-center justify-center w-full h-full'>
-        <h1 className='text-5xl sm:text-6xl font-extrabold text-white'>
-          hello
-        </h1>
-      </div>
     </section>
   );
 }

@@ -28,48 +28,6 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Server-rendered static loader so initial HTML shows the loader immediately */}
-        <div
-          id='ssr-initial-loader'
-          className='fixed inset-0 z-[9999] grid place-items-center bg-background/95 backdrop-blur-sm'
-        >
-          <div className='flex flex-col items-center gap-6 p-8'>
-            <div className='relative'>
-              <div
-                className='logo-ring absolute -inset-2 rounded-full'
-                aria-hidden
-              />
-
-              <div className='relative flex items-center justify-center w-36 h-36 sm:w-44 sm:h-44'>
-                <img
-                  src='/logo.png'
-                  alt='Logo'
-                  className='logo-spin w-28 h-28 sm:w-36 sm:h-36 object-contain rounded-md shadow-xl'
-                />
-              </div>
-            </div>
-
-            <div className='text-center'>
-              <h1 className='text-xl sm:text-2xl font-semibold tracking-tight'>
-                Loading
-              </h1>
-              <div className='flex items-center justify-center mt-2 gap-2'>
-                <span className='w-2 h-2 rounded-full bg-foreground/60 animate-dot' />
-                <span className='w-2 h-2 rounded-full bg-foreground/60 animate-dot' />
-                <span className='w-2 h-2 rounded-full bg-foreground/60 animate-dot' />
-              </div>
-              <p className='mt-3 text-sm text-foreground/60 max-w-xs'>
-                Optimizing assets and preparing your session.
-              </p>
-            </div>
-
-            <div className='w-56 sm:w-72 h-1.5 rounded-full bg-foreground/10 overflow-hidden mt-4'>
-              <div className='h-full rounded-full progress-bar' />
-            </div>
-          </div>
-        </div>
-
-        {/* Client-side initial full-screen loader (will remove server node on mount) */}
         <InitialLoader />
         {children}
       </body>

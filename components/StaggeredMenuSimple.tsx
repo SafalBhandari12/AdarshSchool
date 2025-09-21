@@ -24,17 +24,20 @@ export default function StaggeredMenuSimple({
       {/* header */}
       <header className='absolute top-0 left-0 right-0 p-6 flex items-center justify-between pointer-events-none z-40'>
         <div className='pointer-events-auto'>
-          <img src='/logoOrange.png' alt='logo' className='h-8' />
+          <img src='/logoOrange.png' alt='logo' className='h-12' />
         </div>
 
         <button
           aria-expanded={open}
           aria-controls='menu-panel'
           onClick={() => setOpen((s) => !s)}
-          style={{ color: open ? "#000" : "#ff6b6b" }}
+          style={{ color: open ? "#000" : "#e5e7eb" }}
           className={`pointer-events-auto cursor-pointer inline-flex items-center gap-3 bg-transparent border-0 p-2 focus:outline-none focus-visible:ring`}
         >
-          <span className='inline-block w-12 text-sm'>
+          <span
+            className='inline-block w-12 text-sm'
+            style={{ color: open ? "#000" : "#e5e7eb" }}
+          >
             {open ? "Close" : "Menu"}
           </span>
 
