@@ -19,6 +19,19 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "FavoritMono";
+  src: url("/FavoritMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Utility class to apply the FavoritMono local font for specific sections */
+.favorit-font {
+  font-family: "FavoritMono", "Helvetica Neue", Arial, sans-serif;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
