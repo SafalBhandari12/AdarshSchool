@@ -140,6 +140,40 @@ export default function InitialLoader() {
     };
   }, [visible, logoActive]);
 
+  // Prevent document scrolling while loader is visible
+  useEffect(() => {
+    const preventDefault = (e: Event) => {
+      e.preventDefault();
+    };
+
+    if (visible) {
+      const prevOverflow = document.body.style.overflow;
+      const prevPaddingRight = document.body.style.paddingRight;
+      // compensate for scrollbar to avoid layout shift
+      const scrollBarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
+      if (scrollBarWidth > 0) {
+        document.body.style.paddingRight = `${scrollBarWidth}px`;
+      }
+      document.body.style.overflow = "hidden";
+      // prevent touchmove on mobile
+      document.addEventListener("touchmove", preventDefault, {
+        passive: false,
+      });
+
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        document.body.style.paddingRight = prevPaddingRight;
+        document.removeEventListener(
+          "touchmove",
+          preventDefault as EventListener
+        );
+      };
+    }
+
+    return () => {};
+  }, [visible]);
+
   if (!visible) return null;
 
   return (
