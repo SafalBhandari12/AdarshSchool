@@ -66,11 +66,11 @@ export default function StaggeredMenuSimple({
             key={i}
             style={{
               background: c,
-              transitionDelay: `${i * 100}ms`,
+              transitionDelay: open ? `${i * 150}ms` : `${(2 - i) * 150}ms`,
             }}
-            className={`absolute inset-0 transition-transform duration-500 ease-in-out ${
+            className={`absolute inset-0 transition-transform duration-600 ease-out ${
               open ? "translate-x-0" : offClass
-            } ${i === 0 ? "z-10" : i === 1 ? "z-5" : "z-0"}`}
+            } ${i === 0 ? "z-0" : i === 1 ? "z-5" : "z-10"}`}
           />
         ))}
       </div>
@@ -78,26 +78,26 @@ export default function StaggeredMenuSimple({
       {/* panel */}
       <aside
         id='menu-panel'
-        className={`absolute top-0 bottom-0 h-full bg-white z-30 p-6 md:p-24 pt-20 w-full md:w-[clamp(260px,38vw,420px)] transition-transform duration-500 ease-in-out ${
+        className={`absolute top-0 bottom-0 h-full bg-white z-30 p-6 md:p-24 pt-20 w-full md:w-[clamp(260px,38vw,420px)] transition-transform duration-600 ease-out ${
           open ? "translate-x-0" : offClass
         } ${position === "left" ? "left-0" : "right-0"}`}
         style={{
           WebkitBackdropFilter: "blur(12px)",
           backdropFilter: "blur(12px)",
-          transitionDelay: open ? "300ms" : "0ms",
+          transitionDelay: open ? "450ms" : "0ms",
         }}
         aria-hidden={!open}
       >
         <nav className='flex flex-col h-full'>
           <ul className='flex-1 space-y-3'>
             {items.map((it, idx) => {
-              const delay = `${idx * 70}ms`;
+              const delay = `${450 + idx * 80}ms`;
               return (
                 <li key={it.label} className='relative overflow-hidden'>
                   <a
                     href={it.link}
                     style={{ transitionDelay: open ? delay : "0ms" }}
-                    className={`inline-block text-2xl md:text-4xl font-semibold uppercase transform transition-all duration-300 text-black hover:text-[#0b3d91] cursor-pointer whitespace-normal break-words ${
+                    className={`inline-block text-2xl md:text-4xl font-semibold uppercase transform transition-all duration-500 ease-out text-black hover:text-[#0b3d91] cursor-pointer whitespace-normal break-words ${
                       open
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-6"
