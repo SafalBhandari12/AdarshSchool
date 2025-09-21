@@ -24,3 +24,145 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Loading screen progress-bar and helpers */
+.progress-bar {
+  /* gradient using the foreground color as base */
+  background: linear-gradient(
+    90deg,
+    rgba(23, 23, 23, 0.85),
+    rgba(23, 23, 23, 0.45),
+    rgba(23, 23, 23, 0.85)
+  );
+  will-change: transform;
+  transform-origin: 0% 50%;
+  animation: progressLoop 1.8s ease-in-out infinite;
+}
+
+@keyframes progressLoop {
+  0% {
+    transform: translateX(-100%);
+  }
+  50% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* ensure small bouncing dots are visible */
+@media (prefers-reduced-motion: reduce) {
+  .progress-bar,
+  .animate-bounce,
+  .animate-spin,
+  .animate-pulse {
+    animation: none !important;
+  }
+}
+
+/* BlurText / shimmer helpers */
+.blur-text span {
+  display: inline-block;
+}
+
+.shimmer-text {
+  background-image: linear-gradient(
+    90deg,
+    rgba(23, 23, 23, 0.95),
+    rgba(23, 23, 23, 0.7),
+    rgba(23, 23, 23, 0.95)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  position: relative;
+}
+
+/* Ambient blur helper */
+.blur-ambient {
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(99, 102, 241, 0.18),
+    rgba(99, 102, 241, 0.02) 40%,
+    transparent 60%
+  );
+}
+
+/* Logo ring */
+.logo-ring {
+  border-radius: 9999px;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.09);
+  background: conic-gradient(
+    from 0deg,
+    rgba(99, 102, 241, 0.12),
+    rgba(99, 102, 241, 0.02),
+    transparent 60%
+  );
+  animation: ringRotate 3.2s linear infinite;
+  padding: 14px; /* add space so ring encloses larger logo */
+}
+
+@keyframes ringRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Logo subtle float */
+.logo-spin {
+  transform-origin: center;
+  animation: float 3.4s ease-in-out infinite;
+}
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(3deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+/* dots */
+@keyframes dotPulse {
+  0% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-6px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+}
+.animate-dot {
+  animation: dotPulse 0.9s ease-in-out infinite;
+}
+.animate-dot:nth-child(1) {
+  animation-delay: 0ms;
+}
+.animate-dot:nth-child(2) {
+  animation-delay: 120ms;
+}
+.animate-dot:nth-child(3) {
+  animation-delay: 240ms;
+}
+
+/* progress bar shimmer enhance */
+.progress-bar {
+  background: linear-gradient(
+    90deg,
+    rgba(23, 23, 23, 0.12),
+    rgba(23, 23, 23, 0.4),
+    rgba(23, 23, 23, 0.12)
+  );
+}
