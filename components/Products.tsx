@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import ScrollStack, { ScrollStackItem } from "@/components/ScrollStack";
 import BlurText from "@/components/BlurText";
 
@@ -33,10 +34,12 @@ const Products = () => {
           title='School Blazers'
           subtitle='Tailored wool-blend blazers — durable, wrinkle-resistant and available in multiple house colours.'
         >
-          <img
+          <Image
             src={"/card2.png"}
             alt='school blazers'
             className='w-full h-full object-cover rounded-lg'
+            width={1200}
+            height={800}
           />
         </ScrollStackItem>
 
@@ -44,10 +47,12 @@ const Products = () => {
           title='Uniform Shirts'
           subtitle='Breathable cotton and poly-cotton shirts with reinforced stitching for daily wear.'
         >
-          <img
+          <Image
             src={"/card1.png"}
             alt='uniform shirts'
             className='w-full h-full object-cover rounded-lg'
+            width={1200}
+            height={800}
           />
         </ScrollStackItem>
 
@@ -55,10 +60,13 @@ const Products = () => {
           title='Custom Tailored Sets'
           subtitle='Complete uniform sets with custom logo embroidery, measured fittings and bulk production.'
         >
-          <img
+          <Image
             src='https://lh3.googleusercontent.com/CeIgstZWNBERJnTFElhbNc_BnMszKpGLFXFjJ2QoPooezsjAs1SDBIk_Yubi3uI87uZyHcGtqg8rBVr-M8BTpv74vi5KWp0sKqN_VV4p_yXYk6dJf0djJe8QH7QwE64OQ2CbiIJA'
             alt='custom uniform sets'
             className='w-full h-full object-cover rounded-lg'
+            width={1200}
+            height={800}
+            unoptimized
           />
         </ScrollStackItem>
       </ScrollStack>

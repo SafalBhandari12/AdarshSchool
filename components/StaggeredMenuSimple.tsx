@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 
 export default function StaggeredMenuSimple({
   position = "right",
@@ -24,7 +25,13 @@ export default function StaggeredMenuSimple({
       {/* header */}
       <header className='absolute top-0 left-0 right-0 p-6 flex items-center justify-between pointer-events-none z-40'>
         <div className='pointer-events-auto'>
-          <img src='/logoOrange.png' alt='logo' className='h-12' />
+          <Image
+            src='/logoOrange.png'
+            alt='logo'
+            className='h-12'
+            width={48}
+            height={48}
+          />
         </div>
 
         <button
