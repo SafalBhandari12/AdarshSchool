@@ -64,8 +64,11 @@ export default function StaggeredMenuSimple({
         {colors.slice(0, 3).map((c, i) => (
           <div
             key={i}
-            style={{ background: c }}
-            className={`absolute inset-0 transition-transform ${
+            style={{
+              background: c,
+              transitionDelay: `${i * 100}ms`,
+            }}
+            className={`absolute inset-0 transition-transform duration-500 ease-in-out ${
               open ? "translate-x-0" : offClass
             } ${i === 0 ? "z-10" : i === 1 ? "z-5" : "z-0"}`}
           />
@@ -75,12 +78,13 @@ export default function StaggeredMenuSimple({
       {/* panel */}
       <aside
         id='menu-panel'
-        className={`absolute top-0 bottom-0 h-full bg-white z-30 p-6 md:p-24 pt-20 w-full md:w-[clamp(260px,38vw,420px)] transition-transform duration-300 ${
+        className={`absolute top-0 bottom-0 h-full bg-white z-30 p-6 md:p-24 pt-20 w-full md:w-[clamp(260px,38vw,420px)] transition-transform duration-500 ease-in-out ${
           open ? "translate-x-0" : offClass
         } ${position === "left" ? "left-0" : "right-0"}`}
         style={{
           WebkitBackdropFilter: "blur(12px)",
           backdropFilter: "blur(12px)",
+          transitionDelay: open ? "300ms" : "0ms",
         }}
         aria-hidden={!open}
       >
