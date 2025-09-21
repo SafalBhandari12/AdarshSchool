@@ -3,9 +3,14 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
-export default function InitialLoader() {
+export default function InitialLoader({
+  onComplete,
+}: {
+  onComplete?: () => void;
+}) {
   const [visible, setVisible] = useState(true);
   const [logoVisible, setLogoVisible] = useState(true);
+  const [contentReady, setContentReady] = useState(false);
 
   // new state to orchestrate reveal sequence
   const [whiteRevealed, setWhiteRevealed] = useState(false);
@@ -40,12 +45,23 @@ export default function InitialLoader() {
 
       hideTimeoutRef.current = window.setTimeout(() => {
         setVisible(false);
+        // Notify parent that loader is complete
+        onComplete?.();
+        // Dispatch custom event for loader completion
+        window.dispatchEvent(new CustomEvent("loaderComplete"));
+        // Allow content to show after loader disappears
+        setTimeout(() => setContentReady(true), 100);
       }, remaining);
     }, delay);
   };
 
   useEffect(() => {
     startRef.current = Date.now();
+
+    // Hide main content initially
+    if (typeof document !== "undefined") {
+      document.body.style.overflow = "hidden";
+    }
 
     // Remove server-rendered loader element if present so it doesn't persist after hydration
     try {
@@ -70,9 +86,9 @@ export default function InitialLoader() {
       setLogoActive(true);
     }, initialBgDelay + whiteAnimDuration);
 
-    // If page already loaded, hide quickly but respect 3s minimum
+    // If page already loaded, hide quickly but respect minimum time
     if (typeof document !== "undefined" && document.readyState === "complete") {
-      scheduleHide(250);
+      scheduleHide(1000); // Show loader for at least 1 second even if page is loaded
       return () => {
         if (initTimeoutRef.current) {
           clearTimeout(initTimeoutRef.current);
@@ -85,11 +101,11 @@ export default function InitialLoader() {
       };
     }
 
-    const onLoad = () => scheduleHide(250);
+    const onLoad = () => scheduleHide(500); // Show for additional 500ms after load
     window.addEventListener("load", onLoad);
 
-    // Fallback: hide after 3s to avoid stuck loader
-    fallbackRef.current = window.setTimeout(() => scheduleHide(0), 3000);
+    // Fallback: hide after 5s to avoid stuck loader
+    fallbackRef.current = window.setTimeout(() => scheduleHide(0), 5000);
 
     return () => {
       window.removeEventListener("load", onLoad);
@@ -178,7 +194,10 @@ export default function InitialLoader() {
   if (!visible) return null;
 
   return (
-    <div className='fixed inset-0 z-[9999] grid place-items-center bg-black overflow-hidden'>
+    <div
+      className='fixed inset-0 z-[9999] grid place-items-center bg-black overflow-hidden'
+      data-loader='true'
+    >
       {/* base background layer (shows first) */}
       <div className='absolute inset-0 bg-black' aria-hidden />
 
