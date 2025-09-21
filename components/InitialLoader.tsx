@@ -3,235 +3,146 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 
-export default function InitialLoader({
-  onComplete,
-}: {
-  onComplete?: () => void;
-}) {
+export default function InitialLoader() {
   const [visible, setVisible] = useState(true);
-  const [logoVisible, setLogoVisible] = useState(true);
-  const [contentReady, setContentReady] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [logoLoaded, setLogoLoaded] = useState(false);
+  const [contentLoaded, setContentLoaded] = useState(false);
 
-  // new state to orchestrate reveal sequence
-  const [whiteRevealed, setWhiteRevealed] = useState(false);
-  const [logoActive, setLogoActive] = useState(false);
+  const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const resourcesRef = useRef<{
+    videos: HTMLVideoElement[];
+    images: HTMLImageElement[];
+    totalResources: number;
+    loadedResources: number;
+  }>({
+    videos: [],
+    images: [],
+    totalResources: 0,
+    loadedResources: 0,
+  });
 
-  const intervalRef = useRef<number | null>(null);
-
-  // Enforce the loader to be visible for at least 3 seconds
-  const startRef = useRef<number | null>(null);
-  const initTimeoutRef = useRef<number | null>(null);
-  const hideTimeoutRef = useRef<number | null>(null);
-  const fallbackRef = useRef<number | null>(null);
-  // refs for local reveal timers
-  const whiteTimeoutRef = useRef<number | null>(null);
-  const logoStartRef = useRef<number | null>(null);
-
-  const scheduleHide = (delay = 0) => {
-    if (initTimeoutRef.current) {
-      clearTimeout(initTimeoutRef.current);
-      initTimeoutRef.current = null;
-    }
-
-    initTimeoutRef.current = window.setTimeout(() => {
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-        hideTimeoutRef.current = null;
-      }
-
-      const started = startRef.current ?? Date.now();
-      const elapsed = Date.now() - started;
-      const remaining = Math.max(0, 3000 - elapsed); // ensure 3s minimum
-
-      hideTimeoutRef.current = window.setTimeout(() => {
-        setVisible(false);
-        // Notify parent that loader is complete
-        onComplete?.();
-        // Dispatch custom event for loader completion
-        window.dispatchEvent(new CustomEvent("loaderComplete"));
-        // Allow content to show after loader disappears
-        setTimeout(() => setContentReady(true), 100);
-      }, remaining);
-    }, delay);
-  };
-
+  // Initialize resource tracking
   useEffect(() => {
-    startRef.current = Date.now();
+    const trackResources = () => {
+      // Find all video elements
+      const videos = Array.from(
+        document.querySelectorAll("video")
+      ) as HTMLVideoElement[];
+      const images = Array.from(
+        document.querySelectorAll("img, [data-nimg]")
+      ) as HTMLImageElement[];
 
-    // Hide main content initially
-    if (typeof document !== "undefined") {
-      document.body.style.overflow = "hidden";
-    }
-
-    // Remove server-rendered loader element if present so it doesn't persist after hydration
-    try {
-      const ssr = document.getElementById("ssr-initial-loader");
-      if (ssr && ssr.parentNode) ssr.parentNode.removeChild(ssr);
-    } catch {
-      /* ignore */
-    }
-
-    // Orchestrate the visual sequence:
-    // 1) show base background immediately
-    // 2) after a short delay, reveal a white overlay from bottom -> top
-    // 3) after the white reveal animation completes, activate the logo effects
-    const initialBgDelay = 200; // ms to wait before starting white reveal
-    const whiteAnimDuration = 700; // must match the CSS transition duration
-
-    whiteTimeoutRef.current = window.setTimeout(() => {
-      setWhiteRevealed(true);
-    }, initialBgDelay);
-
-    logoStartRef.current = window.setTimeout(() => {
-      setLogoActive(true);
-    }, initialBgDelay + whiteAnimDuration);
-
-    // If page already loaded, hide quickly but respect minimum time
-    if (typeof document !== "undefined" && document.readyState === "complete") {
-      scheduleHide(1000); // Show loader for at least 1 second even if page is loaded
-      return () => {
-        if (initTimeoutRef.current) {
-          clearTimeout(initTimeoutRef.current);
-          initTimeoutRef.current = null;
-        }
-        if (hideTimeoutRef.current) {
-          clearTimeout(hideTimeoutRef.current);
-          hideTimeoutRef.current = null;
-        }
+      resourcesRef.current = {
+        videos,
+        images,
+        totalResources: videos.length + images.length,
+        loadedResources: 0,
       };
-    }
 
-    const onLoad = () => scheduleHide(500); // Show for additional 500ms after load
-    window.addEventListener("load", onLoad);
+      // Start progress tracking
+      progressIntervalRef.current = setInterval(checkLoadingProgress, 100);
+    };
 
-    // Fallback: hide after 5s to avoid stuck loader
-    fallbackRef.current = window.setTimeout(() => scheduleHide(0), 5000);
+    // Wait a bit for DOM to be ready
+    setTimeout(trackResources, 100);
 
     return () => {
-      window.removeEventListener("load", onLoad);
-      if (fallbackRef.current) {
-        clearTimeout(fallbackRef.current);
-        fallbackRef.current = null;
-      }
-      if (initTimeoutRef.current) {
-        clearTimeout(initTimeoutRef.current);
-        initTimeoutRef.current = null;
-      }
-      if (hideTimeoutRef.current) {
-        clearTimeout(hideTimeoutRef.current);
-        hideTimeoutRef.current = null;
-      }
-      // clear reveal timers
-      if (whiteTimeoutRef.current) {
-        clearTimeout(whiteTimeoutRef.current);
-        whiteTimeoutRef.current = null;
-      }
-      if (logoStartRef.current) {
-        clearTimeout(logoStartRef.current);
-        logoStartRef.current = null;
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
       }
     };
   }, []);
 
-  // Toggle logo opacity while the loader is visible and the reveal sequence has activated the logo
-  useEffect(() => {
-    // only start flicker when the logo sequence has started and loader is still visible
-    if (!visible || !logoActive) {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
+  const checkLoadingProgress = () => {
+    const { videos, images, totalResources } = resourcesRef.current;
+    let loadedCount = 0;
+
+    // Check video loading state
+    videos.forEach((video) => {
+      if (video.readyState >= 3) {
+        // HAVE_FUTURE_DATA or greater
+        loadedCount++;
       }
-      return;
+    });
+
+    // Check image loading state
+    images.forEach((img) => {
+      if (img.complete && img.naturalHeight !== 0) {
+        loadedCount++;
+      }
+    });
+
+    resourcesRef.current.loadedResources = loadedCount;
+
+    // Update progress (ensure minimum 10% for visual feedback)
+    const newProgress =
+      totalResources > 0
+        ? Math.max(10, Math.floor((loadedCount / totalResources) * 100))
+        : 100;
+
+    setProgress(newProgress);
+
+    // Check if everything is loaded
+    if (loadedCount >= totalResources && totalResources > 0) {
+      setContentLoaded(true);
+      if (progressIntervalRef.current) {
+        clearInterval(progressIntervalRef.current);
+        progressIntervalRef.current = null;
+      }
     }
+  };
 
-    // faster flicker interval for a noticeable loading effect (fade + scale)
-    intervalRef.current = window.setInterval(() => {
-      setLogoVisible((v) => !v);
-    }, 500);
-
-    return () => {
-      if (intervalRef.current) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
-      }
-    };
-  }, [visible, logoActive]);
-
-  // Prevent document scrolling while loader is visible
+  // Complete the loader when content is ready
   useEffect(() => {
-    const preventDefault = (e: Event) => {
-      e.preventDefault();
-    };
+    if (contentLoaded && logoLoaded) {
+      // Ensure minimum loading time of 2 seconds for UX
+      const minDisplayTime = 2000;
+      const startTime = performance.now();
+      const remainingTime = Math.max(0, minDisplayTime - startTime);
 
-    if (visible) {
-      const prevOverflow = document.body.style.overflow;
-      const prevPaddingRight = document.body.style.paddingRight;
-      // compensate for scrollbar to avoid layout shift
-      const scrollBarWidth =
-        window.innerWidth - document.documentElement.clientWidth;
-      if (scrollBarWidth > 0) {
-        document.body.style.paddingRight = `${scrollBarWidth}px`;
-      }
-      document.body.style.overflow = "hidden";
-      // prevent touchmove on mobile
-      document.addEventListener("touchmove", preventDefault, {
-        passive: false,
-      });
-
-      return () => {
-        document.body.style.overflow = prevOverflow;
-        document.body.style.paddingRight = prevPaddingRight;
-        document.removeEventListener(
-          "touchmove",
-          preventDefault as EventListener
-        );
-      };
+      setTimeout(() => {
+        setVisible(false);
+        // Dispatch event for ClientLayout
+        setTimeout(() => {
+          const event = new CustomEvent("loaderComplete");
+          window.dispatchEvent(event);
+        }, 500);
+      }, remainingTime);
     }
-
-    return () => {};
-  }, [visible]);
+  }, [contentLoaded, logoLoaded]);
 
   if (!visible) return null;
 
   return (
-    <div
-      className='fixed inset-0 z-[9999] grid place-items-center bg-black overflow-hidden'
-      data-loader='true'
-    >
-      {/* base background layer (shows first) */}
-      <div className='absolute inset-0 bg-black' aria-hidden />
-
-      {/* white reveal layer: slides up from bottom to top */}
-      <div
-        className={`absolute inset-0 bg-white transform transition-transform duration-[700ms] ease-in-out ${
-          whiteRevealed ? "translate-y-0" : "translate-y-full"
-        }`}
-        aria-hidden
-      />
-
-      {/* content wrapper sits above the reveal; logo will fade/translate in when logoActive */}
-      <div className='relative z-10 flex items-center justify-center p-8'>
-        {/* wrapper: no floating animation, but keep translate + fade entrance */}
-        <div
-          className={`transition-all duration-500 ease-in-out transform ${
-            logoActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
+    <div className='fixed inset-0 z-[9999] bg-white flex items-center justify-center transition-opacity duration-500'>
+      <div className='text-center'>
+        {/* Logo */}
+        <div className='mb-8'>
           <Image
             src='/logo.png'
             alt='Logo'
-            width={224}
-            height={224}
-            className={`object-contain filter transition-all duration-300 ease-in-out transform ${
-              logoVisible
-                ? "opacity-100 scale-105 brightness-125 drop-shadow-2xl"
-                : "opacity-25 scale-98 brightness-80 drop-shadow-sm"
-            }`}
+            width={100}
+            height={100}
+            className='mx-auto'
+            onLoad={() => setLogoLoaded(true)}
+            priority
           />
         </div>
-      </div>
 
-      {/* no floating keyframes; only CSS transitions are used for entrance and flicker */}
+        {/* Progress Bar */}
+        <div className='w-64 mx-auto mb-4'>
+          <div className='w-full bg-gray-200 rounded-full h-2'>
+            <div
+              className='bg-orange-500 h-2 rounded-full transition-all duration-300 ease-out'
+              style={{ width: `${progress}%` }}
+            ></div>
+          </div>
+        </div>
+
+        {/* Progress Text */}
+        <p className='text-gray-600 text-sm'>Loading... {progress}%</p>
+      </div>
     </div>
   );
 }
