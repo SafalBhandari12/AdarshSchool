@@ -10,7 +10,7 @@ export default function About() {
   return (
     <section
       id='about'
-      className='h-screen w-full bg-[#f7f5f0] flex flex-col justify-start px-6 py-6'
+      className=' w-full bg-[#f7f5f0] flex flex-col justify-start px-6 py-20'
     >
       {/* Top-left large heading (animated) */}
       <div className='pt-4'>
