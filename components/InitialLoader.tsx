@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 
 export default function InitialLoader() {
   const [visible, setVisible] = useState(true);
@@ -50,7 +51,7 @@ export default function InitialLoader() {
     try {
       const ssr = document.getElementById("ssr-initial-loader");
       if (ssr && ssr.parentNode) ssr.parentNode.removeChild(ssr);
-    } catch (e) {
+    } catch {
       /* ignore */
     }
 
@@ -197,10 +198,12 @@ export default function InitialLoader() {
             logoActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
         >
-          <img
+          <Image
             src='/logo.png'
             alt='Logo'
-            className={`w-40 h-40 sm:w-56 sm:h-56 object-contain filter transition-all duration-300 ease-in-out transform ${
+            width={224}
+            height={224}
+            className={`object-contain filter transition-all duration-300 ease-in-out transform ${
               logoVisible
                 ? "opacity-100 scale-105 brightness-125 drop-shadow-2xl"
                 : "opacity-25 scale-98 brightness-80 drop-shadow-sm"

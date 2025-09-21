@@ -9,20 +9,24 @@ export default function Footer() {
         <div className='flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12'>
           {/* Left: giant heading */}
           <div className='w-full lg:w-1/2 text-left'>
-            <h2 className='font-bold leading-tight text-white text-[3.4rem] sm:text-[4.8rem] md:text-[6rem] lg:text-[7.5rem]'>
-              <BlurText
-                text={"Ready to outfit"}
-                animateBy='words'
-                delay={20}
-                className='block'
-              />
-              <br />
-              <BlurText
-                text={"your students?"}
-                animateBy='words'
-                delay={60}
-                className='block'
-              />
+            <h2 className='font-bold leading-tight text-white text-[1.8rem] sm:text-[2.8rem] md:text-[3.6rem] lg:text-[4.8rem]'>
+              <div className='block'>
+                <BlurText
+                  text={"Ready to outfit"}
+                  animateBy='words'
+                  delay={20}
+                  className='block whitespace-nowrap'
+                />
+              </div>
+
+              <div className='block -mt-1'>
+                <BlurText
+                  text={"your students?"}
+                  animateBy='words'
+                  delay={60}
+                  className='block'
+                />
+              </div>
             </h2>
           </div>
 
@@ -34,7 +38,7 @@ export default function Footer() {
               }
               animateBy='words'
               delay={100}
-              className='text-white text-lg md:text-xl leading-relaxed font-normal'
+              className='text-white text-base md:text-lg leading-relaxed font-normal'
             />
 
             <a
@@ -45,33 +49,9 @@ export default function Footer() {
                 text={"REQUEST A QUOTE"}
                 animateBy='words'
                 delay={140}
-                className='text-black font-medium'
+                className='text-black text-sm md:text-base font-medium'
               />
             </a>
-
-            <div className='flex items-center gap-3 mt-4'>
-              <svg
-                width='36'
-                height='36'
-                viewBox='0 0 24 24'
-                fill='none'
-                aria-hidden='true'
-                className='opacity-95'
-              >
-                <path
-                  d='M4 4h16v4H4zM4 10h16v10H4z'
-                  fill='#ffffff'
-                  opacity='0.95'
-                />
-              </svg>
-
-              <div className='text-white'>
-                <div className='text-sm font-normal'>Powered by</div>
-                <div className='text-base font-medium'>
-                  Adarsh School Uniforms
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
