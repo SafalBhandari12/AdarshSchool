@@ -6,10 +6,18 @@ export default function StaggeredMenuSimple({
   position = "right",
   colors = ["#B19EEF", "#5227FF", "#8A6BFF"],
   items = [
-    { label: "Home", link: "#" },
-    { label: "Work", link: "#" },
+    { label: "Home", link: "/" },
+    { label: "About", link: "#about" },
+    { label: "Services", link: "#services" },
+    { label: "Contact", link: "#contact" },
   ],
-  socials = [{ label: "Twitter", link: "#" }],
+  socials = [
+    {
+      label: "Instagram",
+      link: "https://www.instagram.com/adarsh.school.dress?igsh=MTB5cTRnbjRyNGw4MA==",
+    },
+    { label: "WhatsApp", link: "https://wa.me/918449431638" },
+  ],
 }: {
   position?: "left" | "right";
   colors?: string[];
@@ -20,6 +28,46 @@ export default function StaggeredMenuSimple({
   const offClass =
     position === "left" ? "-translate-x-full" : "translate-x-full";
 
+  const handleMenuClick = (link: string) => {
+    // Close the menu first
+    setOpen(false);
+    setTimeout(() => {
+      // Handle navigation
+      if (link === "/") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (link.startsWith("#")) {
+        const sectionId = link.substring(1);
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const headerOffset = 80;
+          const elementPosition = element.offsetTop;
+          const offsetPosition = elementPosition - headerOffset;
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth",
+          });
+        }
+      } else if (link.startsWith("/")) {
+        let sectionId = "";
+        if (link === "/about") sectionId = "about";
+        else if (link === "/services") sectionId = "services";
+        else if (link === "/contact") sectionId = "contact";
+        if (sectionId) {
+          const element = document.getElementById(sectionId);
+          if (element) {
+            const headerOffset = 80;
+            const elementPosition = element.offsetTop;
+            const offsetPosition = elementPosition - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        }
+      }
+    }, 100);
+  };
+
   return (
     <div className='relative w-full h-full'>
       {/* header */}
@@ -28,8 +76,8 @@ export default function StaggeredMenuSimple({
           <Image
             src='/logoOrange.png'
             alt='logo'
-            className='h-12'
-            width={48}
+            className='h-12 object-contain'
+            width={176}
             height={48}
           />
         </div>
@@ -105,13 +153,17 @@ export default function StaggeredMenuSimple({
               return (
                 <li key={it.label} className='relative overflow-hidden'>
                   <a
-                    href={it.link}
+                    href='#'
                     style={{ transitionDelay: open ? delay : "0ms" }}
-                    className={`inline-block text-2xl md:text-4xl font-semibold uppercase transform transition-all duration-500 ease-out text-black hover:text-[#0b3d91] cursor-pointer whitespace-normal break-words ${
+                    className={`inline-block text-2xl md:text-4xl font-semibold uppercase transform transition-transform duration-500 ease-out text-black hover:text-[#0b3d91] cursor-pointer whitespace-normal break-words ${
                       open
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-6"
                     }`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleMenuClick(it.link);
+                    }}
                   >
                     {it.label}
                   </a>

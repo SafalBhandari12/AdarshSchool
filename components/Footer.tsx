@@ -4,7 +4,7 @@ import BlurText from "@/components/BlurText";
 
 export default function Footer() {
   return (
-    <footer className='bg-[#0f0f0f] text-white py-20'>
+    <footer id='contact' className='bg-[#0f0f0f] text-white py-20'>
       <div className='max-w-7xl mx-auto px-8'>
         <div className='flex flex-col lg:flex-row items-center lg:items-start justify-between gap-12'>
           {/* Left: giant heading */}
@@ -42,7 +42,9 @@ export default function Footer() {
             />
 
             <a
-              href='#contact'
+              href='https://wa.me/918449431638'
+              target='_blank'
+              rel='noopener noreferrer'
               className='inline-block bg-[#d6df3a] text-black font-semibold rounded-full px-10 py-4 shadow-md hover:brightness-95 transition'
             >
               <BlurText

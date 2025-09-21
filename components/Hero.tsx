@@ -3,14 +3,16 @@ import StaggeredMenuSimple from "./StaggeredMenuSimple";
 
 const menuItems = [
   { label: "Home", link: "/" },
-  { label: "About", link: "/about" },
-  { label: "Services", link: "/services" },
-  { label: "Contact", link: "/contact" },
+  { label: "About", link: "#about" },
+  { label: "Services", link: "#services" },
+  { label: "Contact", link: "#contact" },
 ];
 const socialItems = [
-  { label: "Twitter", link: "https://twitter.com" },
-  { label: "GitHub", link: "https://github.com" },
-  { label: "LinkedIn", link: "https://linkedin.com" },
+  {
+    label: "Instagram",
+    link: "https://www.instagram.com/adarsh.school.dress?igsh=MTB5cTRnbjRyNGw4MA==",
+  },
+  { label: "WhatsApp", link: "https://wa.me/918449431638" },
 ];
 
 export default function Hero() {

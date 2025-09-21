@@ -6,7 +6,7 @@ import BlurText from "@/components/BlurText";
 
 const Products = () => {
   return (
-    <section className='py-24 bg-[#4e2858]'>
+    <section id='services' className='py-24 bg-[#4e2858]'>
       <div className='mx-auto max-w-5xl px-6 mb-16'>
         <div className='flex flex-col items-start'>
           <div className='leading-none'>
