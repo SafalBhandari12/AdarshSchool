@@ -12,7 +12,7 @@ export default function InitialLoader() {
 
   const intervalRef = useRef<number | null>(null);
 
-  // Enforce the loader to be visible for at least 2 seconds
+  // Enforce the loader to be visible for at least 3 seconds
   const startRef = useRef<number | null>(null);
   const initTimeoutRef = useRef<number | null>(null);
   const hideTimeoutRef = useRef<number | null>(null);
@@ -35,7 +35,7 @@ export default function InitialLoader() {
 
       const started = startRef.current ?? Date.now();
       const elapsed = Date.now() - started;
-      const remaining = Math.max(0, 2000 - elapsed); // ensure 2s minimum
+      const remaining = Math.max(0, 3000 - elapsed); // ensure 3s minimum
 
       hideTimeoutRef.current = window.setTimeout(() => {
         setVisible(false);
@@ -69,7 +69,7 @@ export default function InitialLoader() {
       setLogoActive(true);
     }, initialBgDelay + whiteAnimDuration);
 
-    // If page already loaded, hide quickly but respect 2s minimum
+    // If page already loaded, hide quickly but respect 3s minimum
     if (typeof document !== "undefined" && document.readyState === "complete") {
       scheduleHide(250);
       return () => {
@@ -87,8 +87,8 @@ export default function InitialLoader() {
     const onLoad = () => scheduleHide(250);
     window.addEventListener("load", onLoad);
 
-    // Fallback: hide after 4s to avoid stuck loader
-    fallbackRef.current = window.setTimeout(() => scheduleHide(0), 4000);
+    // Fallback: hide after 3s to avoid stuck loader
+    fallbackRef.current = window.setTimeout(() => scheduleHide(0), 3000);
 
     return () => {
       window.removeEventListener("load", onLoad);
@@ -127,7 +127,7 @@ export default function InitialLoader() {
       return;
     }
 
-    // faster flicker interval for a noticeable loading effect
+    // faster flicker interval for a noticeable loading effect (fade + scale)
     intervalRef.current = window.setInterval(() => {
       setLogoVisible((v) => !v);
     }, 500);
@@ -157,11 +157,8 @@ export default function InitialLoader() {
 
       {/* content wrapper sits above the reveal; logo will fade/translate in when logoActive */}
       <div className='relative z-10 flex items-center justify-center p-8'>
-        {/* floating wrapper uses a translateY animation so the img can still use scale transforms */}
+        {/* wrapper: no floating animation, but keep translate + fade entrance */}
         <div
-          style={{
-            animation: logoActive ? "float 3.5s ease-in-out infinite" : "none",
-          }}
           className={`transition-all duration-500 ease-in-out transform ${
             logoActive ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
           }`}
@@ -178,20 +175,7 @@ export default function InitialLoader() {
         </div>
       </div>
 
-      {/* local keyframes for the floating effect and keep them scoped here */}
-      <style jsx>{`
-        @keyframes float {
-          0% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-6px);
-          }
-          100% {
-            transform: translateY(0);
-          }
-        }
-      `}</style>
+      {/* no floating keyframes; only CSS transitions are used for entrance and flicker */}
     </div>
   );
 }
