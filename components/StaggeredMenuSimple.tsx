@@ -86,18 +86,14 @@ export default function StaggeredMenuSimple({
           aria-expanded={open}
           aria-controls='menu-panel'
           onClick={() => setOpen((s) => !s)}
-          style={{ color: open ? "#000" : "#e5e7eb" }}
-          className={`pointer-events-auto cursor-pointer inline-flex items-center gap-3 bg-transparent border-0 p-2 focus:outline-none focus-visible:ring`}
+          className={`pointer-events-auto cursor-pointer inline-flex items-center gap-3 bg-black hover:bg-neutral-800 text-white border-0 px-3 py-2 rounded-md focus:outline-none focus-visible:ring focus-visible:ring-white/30`}
         >
-          <span
-            className='inline-block w-12 text-sm'
-            style={{ color: open ? "#000" : "#e5e7eb" }}
-          >
+          <span className='inline-block w-12 text-sm font-medium text-white'>
             {open ? "Close" : "Menu"}
           </span>
 
           {/* icon */}
-          <span className='relative w-4 h-4 inline-flex items-center justify-center'>
+          <span className='relative w-4 h-4 inline-flex items-center justify-center text-white'>
             <span
               className={`absolute left-1/2 top-1/2 block w-6 h-[2px] bg-current transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ${
                 open ? "rotate-45" : "rotate-0"
