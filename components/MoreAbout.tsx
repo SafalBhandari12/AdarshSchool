@@ -133,13 +133,13 @@ export default function MoreAbout() {
 
   return (
     <section className='py-20 flex items-center justify-center min-h-[60vh] bg-[#f7f2ee] favorit-font'>
-      <div className='text-center leading-none w-full max-w-6xl px-6'>
+      <div className='text-center leading-none w-full max-w-8xl px-8'>
         <div className='mb-2'>
           <BlurText
             text={"How we"}
             animateBy='letters'
             delay={40}
-            className={`text-[#2b6f74] font-bold text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[9.5rem] leading-tight justify-center`}
+            className={`text-[#2b6f74] font-bold text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] leading-tight justify-center inline-block whitespace-nowrap`}
           />
         </div>
 
@@ -148,7 +148,7 @@ export default function MoreAbout() {
             text={"Manufacture"}
             animateBy='letters'
             delay={120}
-            className={`text-[#2b6f74] font-bold text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[9.5rem] leading-tight justify-center`}
+            className={`text-[#2b6f74] font-bold text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] leading-tight justify-center inline-block whitespace-nowrap`}
           />
         </div>
 
@@ -157,14 +157,14 @@ export default function MoreAbout() {
             text={"Clothes."}
             animateBy='letters'
             delay={200}
-            className={`text-[#2b6f74] font-bold text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[9.5rem] leading-tight justify-center`}
+            className={`text-[#2b6f74] font-bold text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] leading-tight justify-center inline-block whitespace-nowrap`}
           />
         </div>
 
         {/* Features grid tailored to school dress manufacturing */}
-        <div className='mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 px-16'>
+        <div className='mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 px-8'>
           {features.map((f, i) => (
-            <div key={i} className='flex flex-col items-start gap-4 p-4'>
+            <div key={i} className='flex flex-col items-start gap-4 p-6'>
               <div className='flex-shrink-0'>{f.icon}</div>
 
               <div className='w-full'>
@@ -180,7 +180,7 @@ export default function MoreAbout() {
                     text={f.text}
                     animateBy='words'
                     delay={i * 12 + 20}
-                    className='text-black/90 md:text-base leading-relaxed font-normal'
+                    className='text-black/90 md:text-base leading-relaxed font-normal text-justify'
                   />
                 </div>
               </div>
