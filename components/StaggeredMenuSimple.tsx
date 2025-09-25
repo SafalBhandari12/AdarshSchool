@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 export default function StaggeredMenuSimple({
@@ -25,8 +25,21 @@ export default function StaggeredMenuSimple({
   socials?: { label: string; link: string }[];
 }) {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
   const offClass =
     position === "left" ? "-translate-x-full" : "translate-x-full";
+
+  // Handle scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const handleMenuClick = (link: string) => {
     // Close the menu first
@@ -39,7 +52,7 @@ export default function StaggeredMenuSimple({
         const sectionId = link.substring(1);
         const element = document.getElementById(sectionId);
         if (element) {
-          const headerOffset = 80;
+          const headerOffset = scrolled ? 70 : 96; // Adjust for navbar height
           const elementPosition = element.offsetTop;
           const offsetPosition = elementPosition - headerOffset;
           window.scrollTo({
@@ -55,7 +68,7 @@ export default function StaggeredMenuSimple({
         if (sectionId) {
           const element = document.getElementById(sectionId);
           if (element) {
-            const headerOffset = 80;
+            const headerOffset = scrolled ? 70 : 96;
             const elementPosition = element.offsetTop;
             const offsetPosition = elementPosition - headerOffset;
             window.scrollTo({
@@ -70,13 +83,23 @@ export default function StaggeredMenuSimple({
 
   return (
     <div className='relative w-full h-full'>
-      {/* header */}
-      <header className='absolute top-0 left-0 right-0 p-6 flex items-center justify-between pointer-events-none z-40'>
+      {/* Fixed Header */}
+      <header
+        className={`fixed top-0 left-0 right-0 flex items-center justify-between z-[60] transition-all duration-500 ease-out ${
+          open
+            ? "h-24 px-6 bg-transparent"
+            : scrolled
+            ? "h-16 px-4 bg-black/95 backdrop-blur-md shadow-lg"
+            : "h-24 px-6 bg-transparent"
+        }`}
+      >
         <div className='pointer-events-auto'>
           <Image
             src='/logoOrange.png'
             alt='logo'
-            className='h-12 object-contain'
+            className={`object-contain transition-all duration-500 ease-out ${
+              open || !scrolled ? "h-12" : "h-8"
+            }`}
             width={176}
             height={48}
           />
@@ -86,34 +109,52 @@ export default function StaggeredMenuSimple({
           aria-expanded={open}
           aria-controls='menu-panel'
           onClick={() => setOpen((s) => !s)}
-          className={`pointer-events-auto cursor-pointer inline-flex items-center gap-3 bg-black hover:bg-neutral-800 text-white border-0 px-3 py-2 rounded-md focus:outline-none focus-visible:ring focus-visible:ring-white/30`}
+          className={`pointer-events-auto cursor-pointer inline-flex items-center gap-3 bg-black hover:bg-neutral-800 text-white border-0 rounded-md focus:outline-none focus-visible:ring focus-visible:ring-white/30 transition-all duration-500 ease-out ${
+            open || !scrolled ? "px-3 py-2" : "px-2 py-1.5"
+          }`}
         >
-          <span className='inline-block w-12 text-sm font-medium text-white'>
+          <span
+            className={`inline-block font-medium text-white transition-all duration-500 ease-out ${
+              open || !scrolled ? "w-12 text-sm" : "w-10 text-xs"
+            }`}
+          >
             {open ? "Close" : "Menu"}
           </span>
 
-          {/* icon */}
-          <span className='relative w-4 h-4 inline-flex items-center justify-center text-white'>
+          {/* Hamburger Icon */}
+          <span
+            className={`relative inline-flex items-center justify-center text-white transition-all duration-500 ease-out ${
+              open || !scrolled ? "w-4 h-4" : "w-3 h-3"
+            }`}
+          >
             <span
-              className={`absolute left-1/2 top-1/2 block w-6 h-[2px] bg-current transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ${
+              className={`absolute left-1/2 top-1/2 block bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
                 open ? "rotate-45" : "rotate-0"
-              }`}
+              } ${open || !scrolled ? "w-6 h-[2px]" : "w-4 h-[1.5px]"}`}
             />
             <span
-              className={`absolute left-1/2 top-1/2 block w-6 h-[2px] bg-current transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ${
+              className={`absolute left-1/2 top-1/2 block bg-current transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
                 open ? "-rotate-45" : "rotate-90"
-              }`}
+              } ${open || !scrolled ? "w-6 h-[2px]" : "w-4 h-[1.5px]"}`}
             />
           </span>
         </button>
       </header>
 
-      {/* prelayers */}
+      {/* Overlay for mobile menu */}
+      {open && (
+        <div
+          className='fixed inset-0 bg-black/50 z-40'
+          onClick={() => setOpen(false)}
+        />
+      )}
+
+      {/* Colored Background Layers */}
       <div
         aria-hidden
-        className={`absolute top-0 bottom-0 ${
+        className={`fixed top-0 bottom-0 ${
           position === "left" ? "left-0" : "right-0"
-        } w-full md:w-[clamp(260px,38vw,420px)] pointer-events-none z-20 overflow-hidden`}
+        } w-full md:w-[clamp(260px,38vw,420px)] pointer-events-none z-[45] overflow-hidden`}
       >
         {colors.slice(0, 3).map((c, i) => (
           <div
@@ -124,20 +165,20 @@ export default function StaggeredMenuSimple({
             }}
             className={`absolute inset-0 transition-transform duration-600 ease-out ${
               open ? "translate-x-0" : offClass
-            } ${i === 0 ? "z-0" : i === 1 ? "z-5" : "z-10"}`}
+            }`}
           />
         ))}
       </div>
 
-      {/* panel */}
+      {/* Menu Panel */}
       <aside
         id='menu-panel'
-        className={`absolute top-0 bottom-0 h-full bg-white z-30 p-6 md:p-24 pt-20 w-full md:w-[clamp(260px,38vw,420px)] transition-transform duration-600 ease-out ${
+        className={`fixed top-0 bottom-0 h-full bg-white/95 backdrop-blur-md z-[50] p-6 md:p-24 w-full md:w-[clamp(260px,38vw,420px)] transition-transform duration-600 ease-out ${
           open ? "translate-x-0" : offClass
-        } ${position === "left" ? "left-0" : "right-0"}`}
+        } ${position === "left" ? "left-0" : "right-0"} ${
+          scrolled ? "pt-20" : "pt-28"
+        }`}
         style={{
-          WebkitBackdropFilter: "blur(12px)",
-          backdropFilter: "blur(12px)",
           transitionDelay: open ? "450ms" : "0ms",
         }}
         aria-hidden={!open}
@@ -151,7 +192,7 @@ export default function StaggeredMenuSimple({
                   <a
                     href='#'
                     style={{ transitionDelay: open ? delay : "0ms" }}
-                    className={`inline-block text-2xl md:text-4xl font-semibold uppercase transform transition-transform duration-500 ease-out text-black hover:text-[#0b3d91] cursor-pointer whitespace-normal break-words ${
+                    className={`inline-block text-2xl md:text-4xl font-semibold uppercase transform transition-all duration-500 ease-out text-black hover:text-[#0b3d91] cursor-pointer whitespace-normal break-words ${
                       open
                         ? "opacity-100 translate-y-0"
                         : "opacity-0 translate-y-6"
@@ -168,18 +209,24 @@ export default function StaggeredMenuSimple({
             })}
           </ul>
 
-          {/* socials */}
+          {/* Socials */}
           <div className='mt-auto pt-6'>
-            <h3 className='text-sm font-medium text-indigo-600'>Socials</h3>
-            <ul className='flex gap-4 mt-3'>
+            <h3 className='text-sm font-medium text-indigo-600 mb-3'>
+              Socials
+            </h3>
+            <ul className='flex gap-4'>
               {socials.map((s, i) => (
                 <li key={s.label}>
                   <a
                     href={s.link}
-                    className={`text-sm font-medium transition-opacity duration-300 text-black hover:text-[#0b3d91] cursor-pointer ${
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={`text-sm font-medium transition-all duration-300 text-black hover:text-[#0b3d91] cursor-pointer ${
                       open ? "opacity-100" : "opacity-0 translate-y-3"
                     }`}
-                    style={{ transitionDelay: `${i * 60}ms` }}
+                    style={{
+                      transitionDelay: open ? `${600 + i * 60}ms` : "0ms",
+                    }}
                   >
                     {s.label}
                   </a>
