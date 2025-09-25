@@ -57,6 +57,19 @@ const Products = () => {
         </ScrollStackItem>
 
         <ScrollStackItem
+          title='Sweaters'
+          subtitle='Cozy, washable knit sweaters in house colours with reinforced cuffs and collars.'
+        >
+          <Image
+            src={"/sweater.png"}
+            alt='school sweaters'
+            className='w-full h-full object-cover rounded-lg'
+            width={1200}
+            height={800}
+          />
+        </ScrollStackItem>
+
+        <ScrollStackItem
           title='Custom Tailored Sets'
           subtitle='Complete uniform sets with custom logo embroidery, measured fittings and bulk production.'
         >
