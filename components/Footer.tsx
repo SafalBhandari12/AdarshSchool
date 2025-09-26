@@ -56,63 +56,82 @@ export default function Footer() {
             </a>
 
             {/* Contact Form */}
-            <div className='w-full mt-8 bg-white/5 p-6 rounded-lg'>
-              <h3 className='text-white text-lg font-semibold mb-4'>
-                Send us a message
-              </h3>
-              <form
-                onSubmit={(e: React.FormEvent) => {
-                  e.preventDefault();
-                  const formData = new FormData(
-                    e.currentTarget as HTMLFormElement
-                  );
-                  const name = formData.get("name") as string;
-                  const email = formData.get("email") as string;
-                  const message = formData.get("message") as string;
+          </div>
+        </div>
+        <div className='flex justify-center items-center'>
+          <div className='w-full max-w-md sm:max-w-lg md:max-w-xl mt-8 bg-white/5 p-4 sm:p-6 rounded-lg mx-auto'>
+            <h3 className='text-white text-lg font-semibold mb-4'>
+              Send us a message
+            </h3>
+            <form
+              onSubmit={(e: React.FormEvent) => {
+                e.preventDefault();
+                const formData = new FormData(
+                  e.currentTarget as HTMLFormElement
+                );
+                const name = formData.get("name") as string;
+                const email = formData.get("email") as string;
+                const message = formData.get("message") as string;
 
-                  const whatsappMessage = `Hi! I'm ${name} (${email}). ${message}`;
-                  const whatsappUrl = `https://wa.me/918449431638?text=${encodeURIComponent(
-                    whatsappMessage
-                  )}`;
-                  window.open(whatsappUrl, "_blank");
-                }}
-                className='space-y-4'
+                const whatsappMessage = `Hi! I'm ${name} (${email}). ${message}`;
+                const whatsappUrl = `https://wa.me/918449431638?text=${encodeURIComponent(
+                  whatsappMessage
+                )}`;
+                window.open(whatsappUrl, "_blank");
+              }}
+              className='space-y-4'
+            >
+              <input
+                name='name'
+                type='text'
+                placeholder='Your Name'
+                required
+                className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a]'
+              />
+              <input
+                name='email'
+                type='email'
+                placeholder='Email or Phone'
+                required
+                className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a]'
+              />
+              <textarea
+                name='message'
+                placeholder='Tell us about your uniform requirements...'
+                rows={4}
+                required
+                className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a] resize-none'
+              />
+              <button
+                type='submit'
+                className='bg-[#d6df3a] text-black font-semibold rounded-full px-8 py-3 shadow-md hover:brightness-95 transition'
               >
-                <input
-                  name='name'
-                  type='text'
-                  placeholder='Your Name'
-                  required
-                  className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a]'
-                />
-                <input
-                  name='email'
-                  type='email'
-                  placeholder='Email or Phone'
-                  required
-                  className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a]'
-                />
-                <textarea
-                  name='message'
-                  placeholder='Tell us about your uniform requirements...'
-                  rows={4}
-                  required
-                  className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a] resize-none'
-                />
-                <button
-                  type='submit'
-                  className='bg-[#d6df3a] text-black font-semibold rounded-full px-8 py-3 shadow-md hover:brightness-95 transition'
-                >
-                  Send via WhatsApp
-                </button>
-              </form>
-            </div>
+                Send via WhatsApp
+              </button>
+            </form>
           </div>
         </div>
       </div>
 
       {/* Floating Contact Buttons */}
       <div className='fixed right-6 bottom-6 flex flex-col gap-3 z-50'>
+        {/* Phone Call Button */}
+        <a
+          href='tel:+918449431638'
+          className='w-14 h-14 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110'
+          aria-label='Call us'
+        >
+          <svg
+            width='20'
+            height='20'
+            viewBox='0 0 24 24'
+            fill='currentColor'
+            aria-hidden='true'
+          >
+            <path d='M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.2.48 2.5.74 3.86.74a1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.36.26 2.66.74 3.86a1 1 0 01-.21 1.11l-2.2 2.2z' />
+          </svg>
+        </a>
+
         {/* WhatsApp Button */}
         <a
           href='https://wa.me/918449431638'

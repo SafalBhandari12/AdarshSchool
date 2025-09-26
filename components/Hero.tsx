@@ -1,5 +1,6 @@
 "use client";
 import StaggeredMenuSimple from "./StaggeredMenuSimple";
+import { useEffect, useState } from "react";
 
 const menuItems = [
   { label: "Home", link: "/" },
@@ -16,18 +17,32 @@ const socialItems = [
 ];
 
 export default function Hero() {
+  const [videoSrc, setVideoSrc] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Determine video source once on mount
+    const isMobile = window.innerWidth < 768;
+    const src = isMobile
+      ? "/mobile.mp4"
+      : "/School of Style  A New Era of Fashion Education.mp4";
+    setVideoSrc(src);
+  }, []);
+
   return (
     <section className='relative w-full h-screen overflow-hidden'>
-      {/* fullscreen video background - place your MP4 in the public/ folder with the exact name */}
-      <video
-        className='absolute inset-0 w-full h-full object-cover'
-        src={"/School of Style  A New Era of Fashion Education.mp4"}
-        autoPlay
-        loop
-        muted
-        playsInline
-        aria-hidden
-      />
+      {/* fullscreen video background - only load appropriate video */}
+      {videoSrc && (
+        <video
+          className='absolute inset-0 w-full h-full object-cover'
+          src={videoSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload='metadata'
+          aria-hidden
+        />
+      )}
 
       {/* StaggeredMenuSimple placed above the video as navbar */}
       <div className='absolute inset-0 z-50 pointer-events-auto'>

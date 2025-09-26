@@ -74,7 +74,7 @@ const Products = () => {
           subtitle='Complete uniform sets with custom logo embroidery, measured fittings and bulk production.'
         >
           <Image
-            src='https://lh3.googleusercontent.com/CeIgstZWNBERJnTFElhbNc_BnMszKpGLFXFjJ2QoPooezsjAs1SDBIk_Yubi3uI87uZyHcGtqg8rBVr-M8BTpv74vi5KWp0sKqN_VV4p_yXYk6dJf0djJe8QH7QwE64OQ2CbiIJA'
+            src='./customTailored.jpg'
             alt='custom uniform sets'
             className='w-full h-full object-cover rounded-lg'
             width={1200}

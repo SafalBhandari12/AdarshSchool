@@ -15,14 +15,17 @@ export default function MoreAbout() {
           fill='none'
           aria-hidden='true'
         >
+          {/* Shirt / fabric icon */}
           <path
-            d='M3 7c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v7c0 1.1-.9 2-2 2H7c-2.21 0-4-1.79-4-4V7z'
+            d='M4 7.5C4 6.67 4.67 6 5.5 6h1.2c.28 0 .54.12.72.33L9 8h6l1.58-1.67c.18-.21.44-.33.72-.33h1.2c.83 0 1.5.67 1.5 1.5V11c0 1.1-.9 2-2 2h-1v6a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-6H5c-1.1 0-2-.9-2-2V7.5z'
             fill='#000'
           />
           <path
-            d='M21 9c0-1.66-1.34-3-3-3H9v8h9c1.66 0 3-1.34 3-3V9z'
-            fill='#000'
-            opacity='0.9'
+            d='M8.5 14.5c1 1 3 1 4 0'
+            stroke='#fff'
+            strokeWidth='0.9'
+            strokeLinecap='round'
+            strokeLinejoin='round'
           />
         </svg>
       ),
@@ -143,7 +146,7 @@ export default function MoreAbout() {
           />
         </div>
 
-        <div className='-mt-4 mb-2'>
+        <div className='-mt-4'>
           <BlurText
             text={"Manufacture"}
             animateBy='letters'
