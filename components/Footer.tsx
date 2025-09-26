@@ -58,59 +58,6 @@ export default function Footer() {
             {/* Contact Form */}
           </div>
         </div>
-        <div className='flex justify-center items-center'>
-          <div className='w-full max-w-md sm:max-w-lg md:max-w-xl mt-8 bg-white/5 p-4 sm:p-6 rounded-lg mx-auto'>
-            <h3 className='text-white text-lg font-semibold mb-4'>
-              Send us a message
-            </h3>
-            <form
-              onSubmit={(e: React.FormEvent) => {
-                e.preventDefault();
-                const formData = new FormData(
-                  e.currentTarget as HTMLFormElement
-                );
-                const name = formData.get("name") as string;
-                const email = formData.get("email") as string;
-                const message = formData.get("message") as string;
-
-                const whatsappMessage = `Hi! I'm ${name} (${email}). ${message}`;
-                const whatsappUrl = `https://wa.me/918449431638?text=${encodeURIComponent(
-                  whatsappMessage
-                )}`;
-                window.open(whatsappUrl, "_blank");
-              }}
-              className='space-y-4'
-            >
-              <input
-                name='name'
-                type='text'
-                placeholder='Your Name'
-                required
-                className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a]'
-              />
-              <input
-                name='email'
-                type='email'
-                placeholder='Email or Phone'
-                required
-                className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a]'
-              />
-              <textarea
-                name='message'
-                placeholder='Tell us about your uniform requirements...'
-                rows={4}
-                required
-                className='w-full px-4 py-3 rounded-md bg-white/10 text-white placeholder-gray-300 border border-white/20 focus:outline-none focus:ring-2 focus:ring-[#d6df3a] resize-none'
-              />
-              <button
-                type='submit'
-                className='bg-[#d6df3a] text-black font-semibold rounded-full px-8 py-3 shadow-md hover:brightness-95 transition'
-              >
-                Send via WhatsApp
-              </button>
-            </form>
-          </div>
-        </div>
       </div>
 
       {/* Floating Contact Buttons */}
