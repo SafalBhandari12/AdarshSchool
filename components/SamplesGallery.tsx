@@ -8,68 +8,83 @@ export default function SamplesGallery() {
 
   // Image arrays for each category
   const femaleDownImages = [
-    "WhatsApp Image 2025-09-26 at 13.14.03_67fedf00.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.04_d8b00167.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.08_ec5a38a2.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.09_7e0d207a.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.09_844203ed.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.09_cd52c0b2.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.09_d980b856.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.10_02c3132b.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.10_15652a11.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.11_44531aa0.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.11_d4e2b86a.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.12_cf183b61.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.34_3a35d808.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.35_03e95ffa.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.36_039a92ac.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.36_69c4f8bf.jpg",
+    "WhatsApp Image 2025-09-26 at 13.14.03_67fedf00.png",
+    "WhatsApp Image 2025-09-26 at 13.14.04_d8b00167.png",
+    "WhatsApp Image 2025-09-26 at 13.14.08_ec5a38a2.png",
+    "WhatsApp Image 2025-09-26 at 13.14.09_7e0d207a.png",
+    "WhatsApp Image 2025-09-26 at 13.14.09_844203ed.png",
+    "WhatsApp Image 2025-09-26 at 13.14.09_cd52c0b2.png",
+    "WhatsApp Image 2025-09-26 at 13.14.09_d980b856.png",
+    "WhatsApp Image 2025-09-26 at 13.14.10_02c3132b.png",
+    "WhatsApp Image 2025-09-26 at 13.14.10_15652a11.png",
+    "WhatsApp Image 2025-09-26 at 13.14.11_44531aa0.png",
+    "WhatsApp Image 2025-09-26 at 13.14.11_d4e2b86a.png",
+    "WhatsApp Image 2025-09-26 at 13.14.12_cf183b61.png",
+    "WhatsApp Image 2025-09-26 at 13.14.34_3a35d808.png",
+    "WhatsApp Image 2025-09-26 at 13.14.35_03e95ffa.png",
+    "WhatsApp Image 2025-09-26 at 13.14.36_039a92ac.png",
+    "WhatsApp Image 2025-09-26 at 13.14.36_69c4f8bf.png",
   ];
 
   const femaleUpImages = [
-    "WhatsApp Image 2025-09-26 at 13.13.52_b7a35239.jpg",
-    "WhatsApp Image 2025-09-26 at 13.13.53_7a291925.jpg",
-    "WhatsApp Image 2025-09-26 at 13.13.54_7293653c.jpg",
-    "WhatsApp Image 2025-09-26 at 13.13.55_06225dc9.jpg",
-    "WhatsApp Image 2025-09-26 at 13.13.56_2c7d344b.jpg",
-    "WhatsApp Image 2025-09-26 at 13.13.57_df4578c8.jpg",
-    "WhatsApp Image 2025-09-26 at 13.13.58_9e5d3911.jpg",
-    "WhatsApp Image 2025-09-26 at 13.13.59_248cf967.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.00_2eaef526.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.01_1bfe6625.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.02_02c49b0b.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.02_432a133d.jpg",
-    "WhatsApp Image 2025-09-26 at 13.14.02_5283fd95.jpg",
+    "WhatsApp Image 2025-09-26 at 13.13.52_b7a35239.png",
+    "WhatsApp Image 2025-09-26 at 13.13.53_7a291925.png",
+    "WhatsApp Image 2025-09-26 at 13.13.54_7293653c.png",
+    "WhatsApp Image 2025-09-26 at 13.13.55_06225dc9.png",
+    "WhatsApp Image 2025-09-26 at 13.13.56_2c7d344b.png",
+    "WhatsApp Image 2025-09-26 at 13.13.57_df4578c8.png",
+    "WhatsApp Image 2025-09-26 at 13.13.58_9e5d3911.png",
+    "WhatsApp Image 2025-09-26 at 13.13.59_248cf967.png",
+    "WhatsApp Image 2025-09-26 at 13.14.00_2eaef526.png",
+    "WhatsApp Image 2025-09-26 at 13.14.01_1bfe6625.png",
+    "WhatsApp Image 2025-09-26 at 13.14.02_02c49b0b.png",
+    "WhatsApp Image 2025-09-26 at 13.14.02_432a133d.png",
+    "WhatsApp Image 2025-09-26 at 13.14.02_5283fd95.png",
   ];
 
   const shirtImages = [
-    "WhatsApp Image 2025-09-26 at 12.40.33_9fbbd7c9.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.34_073af703.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.34_82c1beb7.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.34_a46f1bb5.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.35_5cb42147.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.35_70a19bcf.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.35_cd7cda83.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.36_1056195f.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.36_9dd3508a.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.36_cbd68a4f.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.36_df345e05.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.37_0e4e95a4.jpg",
+    "WhatsApp Image 2025-09-26 at 12.40.33_9fbbd7c9.png",
+    "WhatsApp Image 2025-09-26 at 12.40.34_073af703.png",
+    "WhatsApp Image 2025-09-26 at 12.40.34_82c1beb7.png",
+    "WhatsApp Image 2025-09-26 at 12.40.34_a46f1bb5.png",
+    "WhatsApp Image 2025-09-26 at 12.40.35_5cb42147.png",
+    "WhatsApp Image 2025-09-26 at 12.40.35_70a19bcf.png",
+    "WhatsApp Image 2025-09-26 at 12.40.35_cd7cda83.png",
+    "WhatsApp Image 2025-09-26 at 12.40.36_1056195f.png",
+    "WhatsApp Image 2025-09-26 at 12.40.36_9dd3508a.png",
+    "WhatsApp Image 2025-09-26 at 12.40.36_cbd68a4f.png",
+    "WhatsApp Image 2025-09-26 at 12.40.36_df345e05.png",
+    "WhatsApp Image 2025-09-26 at 12.40.37_0e4e95a4.png",
+    "WhatsApp Image 2025-09-26 at 12.40.37_a945aaff.png",
+    "WhatsApp Image 2025-09-26 at 12.40.37_f5ac9b23.png",
+    "WhatsApp Image 2025-09-26 at 12.40.38_084a7470.png",
+    "WhatsApp Image 2025-09-26 at 12.40.38_1a093aa1.png",
+    "WhatsApp Image 2025-09-26 at 12.40.38_29836458.png",
+    "WhatsApp Image 2025-09-26 at 12.40.38_d3f43fdf.png",
+    "WhatsApp Image 2025-09-26 at 12.40.39_0f392c3a.png",
+    "WhatsApp Image 2025-09-26 at 12.40.39_1bee664a.png",
   ];
 
   const sweaterImages = [
-    "WhatsApp Image 2025-09-26 at 12.40.27_02ad2330.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.28_05b865b8.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.28_3604e33f.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.28_b3fd678b.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.29_0a96b977.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.29_423de14e.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.29_58353446.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.29_cd3ac19b.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.30_90a7f756.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.30_b3942fe2.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.30_c8999934.jpg",
-    "WhatsApp Image 2025-09-26 at 12.40.31_21844aba.jpg",
+    "WhatsApp Image 2025-09-26 at 12.40.27_02ad2330.png",
+    "WhatsApp Image 2025-09-26 at 12.40.28_05b865b8.png",
+    "WhatsApp Image 2025-09-26 at 12.40.28_3604e33f.png",
+    "WhatsApp Image 2025-09-26 at 12.40.28_b3fd678b.png",
+    "WhatsApp Image 2025-09-26 at 12.40.29_0a96b977.png",
+    "WhatsApp Image 2025-09-26 at 12.40.29_423de14e.png",
+    "WhatsApp Image 2025-09-26 at 12.40.29_58353446.png",
+    "WhatsApp Image 2025-09-26 at 12.40.29_cd3ac19b.png",
+    "WhatsApp Image 2025-09-26 at 12.40.30_90a7f756.png",
+    "WhatsApp Image 2025-09-26 at 12.40.30_b3942fe2.png",
+    "WhatsApp Image 2025-09-26 at 12.40.30_c8999934.png",
+    "WhatsApp Image 2025-09-26 at 12.40.31_21844aba.png",
+    "WhatsApp Image 2025-09-26 at 12.40.31_3feb9dbb.png",
+    "WhatsApp Image 2025-09-26 at 12.40.32_1a1fbc22.png",
+    "WhatsApp Image 2025-09-26 at 12.40.32_79c9e435.png",
+    "WhatsApp Image 2025-09-26 at 12.40.32_7c4b8d1e.png",
+    "WhatsApp Image 2025-09-26 at 12.40.32_b6be5030.png",
+    "WhatsApp Image 2025-09-26 at 12.40.33_496e6a57.png",
+    "WhatsApp Image 2025-09-26 at 12.40.33_5c944cc9.png",
   ];
 
   const imageCollections = [
@@ -179,9 +194,9 @@ export default function SamplesGallery() {
 
   return (
     <section className='bg-[#f7f2ee] py-20 favorit-font overflow-hidden'>
-      <div className='max-w-7xl mx-auto px-8'>
+      <div className='max-w-7xl mx-auto '>
         {/* Header */}
-        <div className='text-center mb-16'>
+        <div className='text-center mb-16 px-8'>
           <h2 className='font-bold leading-tight text-[#2b6f74] text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] mb-8'>
             <BlurText
               text={"Our Samples"}
@@ -209,7 +224,7 @@ export default function SamplesGallery() {
             <div key={collectionIndex} className='w-full'>
               {/* Collection Title */}
               <div className='mb-6 text-center'>
-                <h3 className='text-[#2b6f74] text-2xl md:text-3xl font-semibold'>
+                <h3 className='text-[#2b6f74] text-2xl md:text-3xl font-semibold px-5'>
                   <BlurText
                     text={collection.title}
                     animateBy='words'
@@ -226,10 +241,11 @@ export default function SamplesGallery() {
                 }}
                 className='flex gap-6 overflow-x-hidden'
                 style={{
+                  // tightened gradient stops so the faded edges are smaller (less blur)
                   maskImage:
-                    "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+                    "linear-gradient(to right, transparent, black 2%, black 98%, transparent)",
                   WebkitMaskImage:
-                    "linear-gradient(to right, transparent, black 5%, black 95%, transparent)",
+                    "linear-gradient(to right, transparent, black 2%, black 98%, transparent)",
                 }}
               >
                 {/* Duplicate images for seamless looping */}
@@ -240,14 +256,14 @@ export default function SamplesGallery() {
                 ].map((image, imageIndex) => (
                   <div
                     key={imageIndex}
-                    className='flex-shrink-0 w-48 h-64 sm:w-56 sm:h-72 md:w-64 md:h-80 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group'
+                    className='flex-shrink-0 w-36 h-48 sm:w-48 sm:h-60 md:w-56 md:h-72 relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group'
                   >
                     <Image
                       src={`/scroller/${collection.folder}/${image}`}
                       alt={`${collection.title} sample ${imageIndex + 1}`}
                       fill
                       className='object-cover transition-transform duration-700 group-hover:scale-110'
-                      sizes='(max-width: 768px) 320px, 320px'
+                      sizes='(max-width: 768px) 220px, 320px'
                     />
                     <div className='absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300' />
                   </div>

@@ -183,7 +183,7 @@ export default function MoreAbout() {
                     text={f.text}
                     animateBy='words'
                     delay={i * 12 + 20}
-                    className='text-black/90 md:text-base leading-relaxed font-normal text-justify'
+                    className='text-black/90 text-sm md:text-base leading-relaxed font-normal text-justify hyphens-auto'
                   />
                 </div>
               </div>
