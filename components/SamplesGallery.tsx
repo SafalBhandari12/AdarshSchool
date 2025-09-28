@@ -197,9 +197,17 @@ export default function SamplesGallery() {
       <div className='max-w-7xl mx-auto '>
         {/* Header */}
         <div className='text-center mb-16 px-8'>
-          <h2 className='font-bold leading-tight text-[#2b6f74] text-[3.2rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] mb-8'>
+          <h2 className='font-bold leading-tight text-[#2b6f74] text-[2.8rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] mb-2'>
             <BlurText
-              text={"Our Samples"}
+              text={"Our"}
+              animateBy='letters'
+              delay={20}
+              className='block'
+            />
+          </h2>
+          <h2 className='font-bold leading-tight text-[#2b6f74] text-[2.8rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] mb-8'>
+            <BlurText
+              text={"Samples"}
               animateBy='letters'
               delay={20}
               className='block'
