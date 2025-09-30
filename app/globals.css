@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 /* ---break---
@@ -36,12 +37,15 @@
 }
 
 :root {
-  --font-favorit: "Favorit", "Helvetica Neue", Arial, sans-serif;
+  --font-favorit: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", system-ui, sans-serif;
 }
 
-/* Utility class to apply the FavoritMono local font for specific sections */
+/* Utility class to apply premium font for specific sections */
 .favorit-font {
-  font-family: "FavoritMono", "Helvetica Neue", Arial, sans-serif;
+  font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", system-ui, sans-serif;
+  font-weight: 500;
 }
 
 @theme inline {
@@ -85,10 +89,13 @@
 }
 
 body {
-  /* Use Favorit Bold from public; fall back to system fonts */
-  font-family: "Favorit", "Helvetica Now Display", Arial, Helvetica, sans-serif;
-  /* Use bold as base to match the provided Bold font file */
-  font-weight: 700;
+  /* Use premium font stack with Inter and SF Pro */
+  font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", system-ui, sans-serif;
+  /* Use medium weight for better readability */
+  font-weight: 500;
+  /* Prevent horizontal overflow */
+  overflow-x: hidden;
 }
 
 /* Loading screen progress-bar and helpers */

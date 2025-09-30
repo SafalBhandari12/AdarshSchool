@@ -31,19 +31,6 @@ const Products = () => {
       </div>
       <ScrollStack>
         <ScrollStackItem
-          title='School Blazers'
-          subtitle='Tailored wool-blend blazers — durable, wrinkle-resistant and available in multiple house colours.'
-        >
-          <Image
-            src={"/card2.png"}
-            alt='school blazers'
-            className='w-full h-full object-cover rounded-lg'
-            width={1200}
-            height={800}
-          />
-        </ScrollStackItem>
-
-        <ScrollStackItem
           title='Uniform Shirts'
           subtitle='Breathable cotton and poly-cotton shirts with reinforced stitching for daily wear.'
         >
@@ -63,6 +50,18 @@ const Products = () => {
           <Image
             src={"/sweater.png"}
             alt='school sweaters'
+            className='w-full h-full object-cover rounded-lg'
+            width={1200}
+            height={800}
+          />
+        </ScrollStackItem>
+        <ScrollStackItem
+          title='School Blazers'
+          subtitle='Tailored wool-blend blazers — durable, wrinkle-resistant and available in multiple house colours.'
+        >
+          <Image
+            src={"/card2.png"}
+            alt='school blazers'
             className='w-full h-full object-cover rounded-lg'
             width={1200}
             height={800}

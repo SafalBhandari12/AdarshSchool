@@ -91,14 +91,14 @@ export default function SamplesGallery() {
     {
       images: femaleDownImages,
       folder: "female down",
-      title: "Pants & Dresses",
+      title: "Pants & Shorts",
     },
     {
       images: femaleUpImages,
       folder: "female up",
-      title: "Girl's Shirts & Tops",
+      title: "Girl's Shirts & Tunics",
     },
-    { images: shirtImages, folder: "shirt", title: "Boy's Shirts" },
+    { images: shirtImages, folder: "shirt", title: "Shirts" },
     { images: sweaterImages, folder: "sweater", title: "Sweaters & Cardigans" },
   ];
 
