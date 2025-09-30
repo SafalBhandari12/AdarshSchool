@@ -141,7 +141,7 @@ export default function MoreAbout() {
           <BlurText
             text={"How we"}
             animateBy='letters'
-            delay={40}
+            delay={1}
             className={`text-[#2b6f74] font-bold text-[2.8rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] leading-tight justify-center inline-block`}
           />
         </div>
@@ -150,7 +150,7 @@ export default function MoreAbout() {
           <BlurText
             text={"Manufacture"}
             animateBy='letters'
-            delay={120}
+            delay={3}
             className={`text-[#2b6f74] font-bold text-[2.8rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] leading-tight justify-center inline-block`}
           />
         </div>
@@ -159,7 +159,7 @@ export default function MoreAbout() {
           <BlurText
             text={"Clothes."}
             animateBy='letters'
-            delay={200}
+            delay={5}
             className={`text-[#2b6f74] font-bold text-[2.8rem] sm:text-[5rem] md:text-[7rem] lg:text-[8.5rem] xl:text-[9.5rem] leading-tight justify-center inline-block`}
           />
         </div>
@@ -174,7 +174,7 @@ export default function MoreAbout() {
                 <BlurText
                   text={f.title}
                   animateBy='words'
-                  delay={i * 40}
+                  delay={i * 2 + 7}
                   className='text-black text-2xl md:text-3xl font-semibold'
                 />
 
@@ -182,7 +182,7 @@ export default function MoreAbout() {
                   <BlurText
                     text={f.text}
                     animateBy='words'
-                    delay={i * 12 + 20}
+                    delay={i * 1 + 9}
                     className='text-black/90 text-sm md:text-base leading-relaxed font-normal text-justify hyphens-auto'
                   />
                 </div>

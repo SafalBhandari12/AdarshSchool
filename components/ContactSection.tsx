@@ -12,7 +12,7 @@ export default function ContactSection() {
             <BlurText
               text={"Get In Touch"}
               animateBy='words'
-              delay={20}
+              delay={2}
               className='block'
             />
           </h2>
@@ -23,7 +23,7 @@ export default function ContactSection() {
                 "Ready to outfit your school? Tell us about your uniform requirements and we'll get back to you with a custom quote."
               }
               animateBy='words'
-              delay={60}
+              delay={6}
               className='text-[#2b6f74]/80 text-lg md:text-xl leading-relaxed'
             />
           </div>
@@ -36,7 +36,7 @@ export default function ContactSection() {
               <BlurText
                 text={"Send us a message"}
                 animateBy='words'
-                delay={100}
+                delay={10}
                 className='block'
               />
             </h3>

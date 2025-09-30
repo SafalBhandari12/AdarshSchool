@@ -14,7 +14,7 @@ export default function Footer() {
                 <BlurText
                   text={"Ready to outfit"}
                   animateBy='words'
-                  delay={20}
+                  delay={2}
                   className='block whitespace-nowrap'
                 />
               </div>
@@ -23,7 +23,7 @@ export default function Footer() {
                 <BlurText
                   text={"your students?"}
                   animateBy='words'
-                  delay={60}
+                  delay={6}
                   className='block'
                 />
               </div>
@@ -37,7 +37,7 @@ export default function Footer() {
                 "Gain direct access to our design and production teams to deliver comfortable, durable and affordable school uniforms — tailored to your house colours and sizing needs."
               }
               animateBy='words'
-              delay={100}
+              delay={10}
               className='text-white text-base md:text-lg leading-relaxed font-normal'
             />
 
@@ -50,7 +50,7 @@ export default function Footer() {
               <BlurText
                 text={"REQUEST A QUOTE"}
                 animateBy='words'
-                delay={140}
+                delay={15}
                 className='text-black text-sm md:text-base font-medium'
               />
             </a>

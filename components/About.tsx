@@ -18,7 +18,7 @@ export default function About() {
           text='School uniforms crafted for comfort, durability and style'
           tag='h2'
           className='font-semibold text-black leading-[0.95] max-w-[95%] text-3xl md:text-4xl lg:text-[4.5rem] xl:text-[5.5rem]'
-          delay={30}
+          delay={1}
           duration={0.45}
           ease='power3.out'
           splitType='chars'
@@ -39,7 +39,7 @@ export default function About() {
           }
           tag='p'
           className='inline-block w-full max-w-[680px] text-lg md:text-xl lg:text-2xl text-black/90 leading-relaxed font-normal'
-          delay={30}
+          delay={3}
           duration={0.45}
           ease='power3.out'
           splitType='words'

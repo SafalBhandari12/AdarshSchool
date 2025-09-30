@@ -14,7 +14,7 @@ const Products = () => {
               text={"Our"}
               className='text-[#ddf0f7] text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold'
               animateBy='letters'
-              delay={40}
+              delay={1}
               vertical
             />
           </div>
@@ -23,7 +23,7 @@ const Products = () => {
               text={"Products"}
               className='text-[#ddf0f7] text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bold'
               animateBy='letters'
-              delay={80}
+              delay={3}
               vertical
             />
           </div>

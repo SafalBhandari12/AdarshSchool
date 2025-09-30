@@ -187,8 +187,8 @@ export default function SamplesGallery() {
       });
     };
 
-    // Start animation after a short delay to let critical layout happen
-    const timer = setTimeout(animateScrollers, 500);
+    // Start animation immediately for faster loading
+    const timer = setTimeout(animateScrollers, 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -201,7 +201,7 @@ export default function SamplesGallery() {
             <BlurText
               text={"Our"}
               animateBy='letters'
-              delay={20}
+              delay={1}
               className='block'
             />
           </h2>
@@ -209,7 +209,7 @@ export default function SamplesGallery() {
             <BlurText
               text={"Samples"}
               animateBy='letters'
-              delay={20}
+              delay={3}
               className='block'
             />
           </h2>
@@ -220,7 +220,7 @@ export default function SamplesGallery() {
                 "Explore our diverse collection of school uniforms crafted with precision and care. From traditional designs to modern styles, each piece reflects our commitment to quality and comfort."
               }
               animateBy='words'
-              delay={60}
+              delay={5}
               className='text-[#2b6f74]/80 text-lg md:text-xl leading-relaxed'
             />
           </div>
@@ -236,7 +236,7 @@ export default function SamplesGallery() {
                   <BlurText
                     text={collection.title}
                     animateBy='words'
-                    delay={100 + collectionIndex * 50}
+                    delay={7 + collectionIndex * 2}
                     className='block'
                   />
                 </h3>
