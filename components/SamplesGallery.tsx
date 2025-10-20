@@ -96,7 +96,7 @@ export default function SamplesGallery() {
     {
       images: femaleUpImages,
       folder: "female up",
-      title: "Girl's Shirts & Tunics",
+      title: "Girl's Skirts & Tunics",
     },
     { images: shirtImages, folder: "shirt", title: "Shirts" },
     { images: sweaterImages, folder: "sweater", title: "Sweaters & Cardigans" },
