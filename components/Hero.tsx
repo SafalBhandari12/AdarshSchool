@@ -23,8 +23,8 @@ export default function Hero() {
     // Determine video source once on mount
     const isMobile = window.innerWidth < 768;
     const src = isMobile
-      ? "/mobile.mp4"
-      : "/School of Style  A New Era of Fashion Education.mp4";
+      ? "/mobile.webm"
+      : "/School of Style  A New Era of Fashion Education.webm";
     setVideoSrc(src);
   }, []);
 
